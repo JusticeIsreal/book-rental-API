@@ -50,9 +50,6 @@ const registerUser = async (req, res) => {
   }
 };
 
-// log in as an admin
-const loginUser = (req, res) => {
-  res.send("register");
-};
 
-module.exports = { registerUser, loginUser };
+
+module.exports = registerUser;
