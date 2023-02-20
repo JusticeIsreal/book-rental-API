@@ -6,7 +6,7 @@ const {
   getAllProducts,
   updateProduct,
   deleteProduct,
-} = require("../Controller/Store/saveProduct");
+} = require("../Controller/Store/Product");
 
 // user authentication route
 router.post("/addproduct", addProduct);

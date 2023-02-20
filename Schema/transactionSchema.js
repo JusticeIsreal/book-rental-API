@@ -3,27 +3,19 @@ const mongoose = require("mongoose");
 transactionSchemaFunc = mongoose.Schema({
   name: {
     type: String,
-    required: [true, "Enter you full name"],
-    minlength: [5, "Enter full name"],
-    trim: true,
   },
   email: {
     type: String,
-    required: [true, "Enter your email address"],
-    trim: true,
   },
   position: {
     type: String,
-    default: "client",
   },
-  password: {
+  phonenumber: {
     type: String,
-    required: [true, "Enter your password"],
   },
-  verified: {
-    type: Boolean,
-    default: false,
+  productbought: {
+    type: Array,
   },
 });
 
-module.exports = mongoose.model("adminAccessSchema", adminAccessSchemaFunc);
+module.exports = mongoose.model("transactionSchema", transactionSchemaFunc);
