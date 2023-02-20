@@ -1,6 +1,6 @@
 const UserOTPVerification = require("../../Schema/UserOTPVerification");
 const bcrypt = require("bcrypt");
-const adminAccessSchema = require("../../Schema/adminSchema");
+const userSchema = require("../../Schema/userSchema");
 const verifyRegOTP = async (req, res) => {
   try {
     // get the userId and otp from the page or form
@@ -23,7 +23,6 @@ const verifyRegOTP = async (req, res) => {
         const { expiresAt } = UserOTPVerificationRecord;
         const hashedOTP = UserOTPVerificationRecord.otp;
 
-        console.log(UserOTPVerificationRecord);
         if (expiresAt < Date.now()) {
           await UserOTPVerification.deleteMany({ userId });
           throw new Error("OTP has expired, Kindly Register again");
@@ -33,10 +32,7 @@ const verifyRegOTP = async (req, res) => {
           if (!validOTP) {
             throw new Error("Incorrect OTP");
           } else {
-            await adminAccessSchema.updateOne(
-              { _id: userId },
-              { verified: true }
-            );
+            await userSchema.updateOne({ _id: userId }, { verified: true });
             await UserOTPVerification.deleteMany({ userId });
             res.status(200).json({
               status: "SUCCESS",

@@ -21,6 +21,8 @@ const sendOTPVerificationEmail = async ({ _id, email }, res) => {
       expiresAt: Date.now() + 3600000,
     });
     await newOTPVerification.save();
+
+    // send mail
     await transporter.sendMail(mailOptions);
     res.status(200).json({
       status: "PENDING",

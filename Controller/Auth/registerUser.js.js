@@ -1,4 +1,4 @@
-const adminAccessSchema = require("../../Schema/adminSchema");
+const userSchema = require("../../Schema/userSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
@@ -11,7 +11,7 @@ const registerUser = async (req, res) => {
   const { name, email, position, password } = req.body;
 
   // check if any user in the database already use the email entered in
-  const existingUser = await adminAccessSchema.findOne({ email: email });
+  const existingUser = await userSchema.findOne({ email: email });
 
   // if the email is already exits cancel the registration
   if (existingUser) {
@@ -28,7 +28,7 @@ const registerUser = async (req, res) => {
     const hashPassword = await bcrypt.hash(password, rounds);
 
     //   return all the values entered and store in the data base and add verified status for email verification
-    let user = await adminAccessSchema.create({
+    let user = await userSchema.create({
       name,
       email,
       position,
@@ -49,7 +49,5 @@ const registerUser = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-
-
 
 module.exports = registerUser;

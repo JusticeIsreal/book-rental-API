@@ -11,7 +11,9 @@ app.use(cors());
 
 // routes
 const userAccess = require("./Route/userAuthRoute");
+const products = require("./Route/productRoute");
 app.use("/api/v1/userverification", userAccess);
+app.use("/api/v1/products", products);
 
 const connectDB = require("./Database/adminDB.js");
 const connectAdminToDataBase = async () => {
