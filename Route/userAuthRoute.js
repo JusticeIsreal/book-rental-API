@@ -9,8 +9,8 @@ const {
   allUsers,
   updateUserPosition,
   deleteUser,
+  filterUsers,
 } = require("../Controller/Auth/usersCRUD.js");
-
 
 // user authentication route
 router.post("/registeruser", registerUser);
@@ -20,6 +20,7 @@ router.post("/loginuser", loginUser);
 
 // admin access routes
 router.get("/allusers", allUsers);
+router.get("/filterusers", filterUsers);
 router.patch("/updateuser/:id", updateUserPosition);
 router.delete("/deleteuser/:id", deleteUser);
 

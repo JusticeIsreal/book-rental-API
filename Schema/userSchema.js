@@ -24,6 +24,14 @@ adminAccessSchemaFunc = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  transaction: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "transactionSchema",
+      required: true,
+    },
+  ],
+  timestamp: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("adminAccessSchema", adminAccessSchemaFunc);

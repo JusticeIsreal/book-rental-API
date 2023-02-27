@@ -6,9 +6,11 @@ const {
   getAllProducts,
   updateProduct,
   deleteProduct,
+  findOneProduct,
 } = require("../Controller/Store/Product");
 
 // user authentication route
+router.get("/findoneproduct/:id", findOneProduct);
 router.post("/addproduct", addProduct);
 router.get("/allproducts", getAllProducts);
 router.patch("/updateproduct/:id", updateProduct);

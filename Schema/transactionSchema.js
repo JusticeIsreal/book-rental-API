@@ -1,21 +1,37 @@
 const mongoose = require("mongoose");
 
 transactionSchemaFunc = mongoose.Schema({
-  name: {
+  usernumber: {
     type: String,
+    required: true,
   },
-  email: {
+  deliveryaddress: {
     type: String,
+    required: true,
   },
-  position: {
+  product: [
+    {
+      productname: String,
+      productprice: Number,
+      quantity: Number,
+    },
+  ],
+  user: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "adminAccessSchema",
+      required: true,
+    },
+  ],
+  totalAmount: {
+    type: Number,
+    required: true,
+  },
+  status: {
     type: String,
+    default: "Open",
   },
-  phonenumber: {
-    type: String,
-  },
-  productbought: {
-    type: Array,
-  },
+  timestamp: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("transactionSchema", transactionSchemaFunc);
