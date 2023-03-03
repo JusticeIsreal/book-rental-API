@@ -137,7 +137,6 @@ const deleteProduct = async (req, res) => {
 };
 // find single product
 const findOneProduct = async (req, res) => {
-  
   try {
     // const auth = req.headers.authorization;
     // if (!auth || !auth.startsWith("Bearer ")) {
@@ -230,10 +229,33 @@ const updateProduct = async (req, res) => {
   }
 };
 
+const filterProduct = async (req, res) => {
+  try {
+    const newArrival = await Product.find({ productclass: "newarrival" });
+    const promo = await Product.find({ productclass: "promo" });
+    const bestseller = await Product.find({ productclass: "bestseller" });
+    const romance = await Product.find({ productcategory: "romance" });
+    const scifi = await Product.find({ productcategory: "scifi" });
+    const motivation = await Product.find({ productcategory: "motivation" });
+
+    res.status(200).json({
+      newArrival: newArrival,
+      promo: promo,
+      bestseller: bestseller,
+      romance: romance,
+      scifi: scifi,
+      motivation: motivation,
+    });
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 module.exports = {
   addProduct,
   getAllProducts,
   updateProduct,
   deleteProduct,
   findOneProduct,
+  filterProduct,
 };
